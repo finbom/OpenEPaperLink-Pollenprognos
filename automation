@@ -1,0 +1,253 @@
+alias: Pollenprognos - E-paper display
+description: Uppdaterar 4.2" OEPL-display med pollenprognos för Skövde
+triggers:
+  - hours: /2
+    trigger: time_pattern
+  - event: start
+    trigger: homeassistant
+conditions: []
+actions:
+  - action: open_epaper_link.drawcustom
+    data:
+      background: white
+      rotate: 0
+      payload:
+        - type: rectangle
+          x_start: 6
+          y_start: 6
+          x_end: 394
+          y_end: 294
+          outline: red
+          width: 2
+          fill: white
+        - type: rectangle
+          x_start: 10
+          y_start: 10
+          x_end: 390
+          y_end: 290
+          outline: black
+          width: 1
+          fill: white
+        - type: rectangle
+          x_start: 10
+          y_start: 10
+          x_end: 390
+          y_end: 52
+          outline: black
+          width: 1
+          fill: red
+        - type: text
+          value: Pollenprognos Skövde
+          x: 14
+          "y": 16
+          size: 22
+          color: white
+          font: ../../media/SourGummy-Black.ttf
+        - type: text
+          value: "{{ now().strftime('%Y-%m-%d') }}"
+          x: 390
+          "y": 16
+          size: 14
+          color: white
+          font: ../../media/SourGummy-Black.ttf
+          anchor: rt
+        - type: text
+          value: uppdaterad {{ now().strftime('%H:%M') }}
+          x: 390
+          "y": 36
+          size: 11
+          color: white
+          font: ../../media/SourGummy-Black.ttf
+          anchor: rt
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 0 %}{{ lista[0][0] }}{%
+            endif %}
+          x: 14
+          "y": 65
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 0 and lista[0][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 0 %}{{ lista[0][2] }}{%
+            endif %}
+          x: 376
+          "y": 65
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 0 and lista[0][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+          anchor: rt
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 1 %}{{ lista[1][0] }}{%
+            endif %}
+          x: 14
+          "y": 101
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 1 and lista[1][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 1 %}{{ lista[1][2] }}{%
+            endif %}
+          x: 376
+          "y": 101
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 1 and lista[1][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+          anchor: rt
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 2 %}{{ lista[2][0] }}{%
+            endif %}
+          x: 14
+          "y": 137
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 2 and lista[2][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 2 %}{{ lista[2][2] }}{%
+            endif %}
+          x: 376
+          "y": 137
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 2 and lista[2][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+          anchor: rt
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 3 %}{{ lista[3][0] }}{%
+            endif %}
+          x: 14
+          "y": 173
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 3 and lista[3][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 3 %}{{ lista[3][2] }}{%
+            endif %}
+          x: 376
+          "y": 173
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 3 and lista[3][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+          anchor: rt
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 4 %}{{ lista[4][0] }}{%
+            endif %}
+          x: 14
+          "y": 209
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 4 and lista[4][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 4 %}{{ lista[4][2] }}{%
+            endif %}
+          x: 376
+          "y": 209
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 4 and lista[4][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+          anchor: rt
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 5 %}{{ lista[5][0] }}{%
+            endif %}
+          x: 14
+          "y": 245
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 5 and lista[5][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+        - type: text
+          value: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 5 %}{{ lista[5][2] }}{%
+            endif %}
+          x: 376
+          "y": 245
+          size: 19
+          color: >-
+            {% set lista = state_attr('sensor.pollen_skovde_forhojda',
+            'forhojda_lista') %}{% if lista | length > 5 and lista[5][1] in
+            ['Höga','Mycket höga'] %}red{% else %}black{% endif %}
+          font: ../../media/SourGummy-Black.ttf
+          anchor: rt
+        - type: line
+          x_start: 10
+          y_start: 272
+          x_end: 390
+          y_end: 272
+          fill: black
+          width: 1
+        - type: text
+          value: >-
+            {% set allergener = [('Al',
+            states('sensor.pollen_skovde_al')),('Alm',
+            states('sensor.pollen_skovde_alm')),('Björk',
+            states('sensor.pollen_skovde_bjork')),('Hassel',
+            states('sensor.pollen_skovde_hassel')),('Sälg/vide',
+            states('sensor.pollen_skovde_salg_och_viden')),('Ek',
+            states('sensor.pollen_skovde_ek')),('Gräs',
+            states('sensor.pollen_skovde_gras')),('Gråbo',
+            states('sensor.pollen_skovde_grabo')),('Bok',
+            states('sensor.pollen_skovde_bok')),('Ambrosia',
+            states('sensor.pollen_skovde_malortsambrosia'))] %}Inga halter: {{
+            allergener | selectattr('1', 'in', ['Inga halter', 'n/a']) |
+            map(attribute='0') | join(' · ') }}
+          x: 200
+          "y": 279
+          size: 11
+          color: black
+          font: ../../media/SourGummy-Black.ttf
+          anchor: mt
+    target:
+      device_id: f946f4382a70c0ac487f971ad0722334
